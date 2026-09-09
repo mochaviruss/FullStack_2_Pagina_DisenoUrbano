@@ -108,4 +108,10 @@ function actualizarEstado(id, nuevoEstado) {
     }
 }
 
+/*Funcion para reiniciar pruebas en el cliente */
+function reiniciarPruebas() {
+    localStorage.removeItem('proyectosCliente');
+    location.reload();
+}
+
 window.onload = renderizarProyectos;

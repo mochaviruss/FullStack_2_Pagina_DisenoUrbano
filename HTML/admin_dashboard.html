@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Administrador</title>
+    <link rel="stylesheet" href="estilos_comunes.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Panel de Administracion</h1>
+            <p>Reportes de avance y costos de proyectos.</p>
+        </div>
+        
+        <div class="header">
+        <!-- Boton para volver al login-->
+        <button class="btn btn-primario" onclick="window.location.href='index.html'" style="max-width: 180px;">
+        ← Volver al Login
+        </button>
+
+        <!-- Boton de resetear de datos -->
+        <button class="btn btn-alerta" onclick="reiniciarPruebas()" style="max-width: 200px; margin-top: 15px;">
+            Reiniciar Datos
+        </button>
+        </div>
+
+        <div class="card">
+            <h2>Consolidado de Proyectos</h2>
+            <button class="btn btn-exito" style="max-width: 200px;" onclick="exportarExcel()">Exportar a Excel</button>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Proyecto</th>
+                            <th>Avance</th>
+                            <th>Costo Estimado</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-reportes">
+                        <!-- Inyeccion JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="admin_logica.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Diseno Grafico</title>
+    <link rel="stylesheet" href="estilos_comunes.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Panel de Diseno Grafico</h1>
+        </div>
+
+        <div class="header">
+        <!-- Boton para volver al login-->
+        <button class="btn btn-primario" onclick="window.location.href='index.html'" style="max-width: 180px;">
+        ← Volver al Login
+        </button>
+
+        <!-- Boton de resetear de datos -->
+        <button class="btn btn-alerta" onclick="reiniciarPruebas()" style="max-width: 200px; margin-top: 15px;">
+            Reiniciar Datos
+        </button>
+        </div>
+        
+        <div class="panel-grid">
+            <div class="columna">
+                <div class="card">
+                    <h2>Gestionar Solicitud</h2>
+                    <select id="solicitud-actual" style="margin-bottom: 10px;">
+                        <option value="SOL01">Render Fachada Principal</option>
+                    </select>
+                    <textarea id="motivo-rechazo" placeholder="Especifique motivo si rechaza..." style="display:none; margin-bottom:10px;"></textarea>
+                    <div id="err-rechazo" class="error-msg" style="margin-bottom:10px;">Debe ingresar un motivo para rechazar.</div>
+                    
+                    <button class="btn btn-exito" onclick="aceptarSolicitud()">Aceptar Solicitud</button>
+                    <button class="btn btn-alerta" onclick="rechazarSolicitud()">Rechazar Solicitud</button>
+                </div>
+            </div>
+            <div class="columna">
+                <div class="card">
+                    <h2>Entrega de Material Visual</h2>
+                    <div class="form-group">
+                        <label>Destinatario / Cliente</label>
+                        <select id="dg-destinatario">
+                            <option value="">-- Seleccione --</option>
+                            <option value="C01">Cliente Inmobiliaria Sur</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Notas de avance</label>
+                        <textarea id="dg-notas"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Adjuntar Archivo (Max 50MB, .pdf, .png, .jpeg, .zip, .ai, .psd, .pptx)</label>
+                        <input type="file" id="dg-archivo" accept=".pdf,.png,.jpeg,.zip,.ai,.psd,.pptx">
+                        <div id="err-dg-archivo" class="error-msg"></div>
+                    </div>
+                    <button class="btn btn-primario" onclick="enviarMaterial()">Enviar Correo / Material</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="disenador_logica.js"></script>
+</body>
+</html>

@@ -10,12 +10,32 @@
     <div class="container">
         <div class="header">
             <h1>Portal del Cliente</h1>
-            <p>Bienvenido. Aqui estan tus proyectos.</p>
+            <p>Bienvenido! Aqui estan tus proyectos.</p>
+        </div>
+
+        <div class="header">
+        <!-- Boton para volver al login-->
+        <button class="btn btn-primario" onclick="window.location.href='index.html'" style="max-width: 180px;">
+        ← Volver al Login
+        </button>
+
+        <!-- Boton de resetear de datos -->
+        <button class="btn btn-alerta" onclick="reiniciarPruebas()" style="max-width: 200px; margin-top: 15px;">
+            Reiniciar Datos
+        </button>
         </div>
 
         <div id="contenedor-proyectos">
             <!-- Inyeccion por JS -->
         </div>
+    </div>
+
+
+    <div class="header">
+    <!-- Botón de reinicio de datos -->
+    <button class="btn btn-alerta" onclick="reiniciarPruebas()" style="max-width: 200px; margin-top: 15px;">
+        Reiniciar Datos
+    </button>
     </div>
 
     <script src="cliente_logica.js"></script>
