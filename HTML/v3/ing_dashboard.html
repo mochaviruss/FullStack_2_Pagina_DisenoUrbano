@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Ingeniería Estructural</title>
+    <link rel="stylesheet" href="estilos_comunes.css">
+</head>
+<body>
+
+    <div class="hero-section">
+        <header class="navbar">
+            <div>
+                <h1>Panel Estructural</h1>
+                <p class="hero-subtitle">Módulo de revisión de planos, reportes de fallas y entrega de cálculos</p>
+            </div>
+            <div>
+                <button class="btn btn-nav" onclick="window.location.href='index.html'">← Volver al Login</button>
+                <button class="btn btn-nav" onclick="reiniciarPruebas()" style="margin-left: 10px;">Reiniciar Datos</button>
+            </div>
+        </header>
+    </div>
+
+    <main class="main-container">
+        <div class="panel-grid">
+            
+            <!-- Columna 1: Planos y Reportes -->
+            <div class="columna">
+                <div class="card">
+                    <span class="card-number">NR. 01</span>
+                    <h2>Planos Recibidos (Aprobados)</h2>
+                    
+                    <ul style="list-style: none; padding: 0; margin-bottom: 25px;">
+                        <li style="display: flex; justify-content: space-between; align-items: center; background: #fafafa; padding: 12px 15px; border: 1px solid #e5e5e7; font-size: 0.88rem; font-weight: 500;">
+                            <span>Plano_Arquitectura_V2.dwg</span>
+                            <button class="btn btn-primario" style="padding: 6px 12px; font-size: 0.7rem; width: auto;">Descargar</button>
+                        </li>
+                    </ul>
+
+                    <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px; color: #121315;">Reportar Fallas en Planos</h3>
+                    
+                    <div class="form-group">
+                        <textarea id="falla-detalle" placeholder="Detalle la falla estructural..."></textarea>
+                        <div id="err-falla" class="error-msg">Mínimo 20 caracteres obligatorios.</div>
+                    </div>
+
+                    <button class="btn btn-alerta" style="width: 100%; margin-top: 10px;" onclick="reportarFalla()">Solicitar Revisión / Reportar Falla</button>
+                </div>
+            </div>
+
+            <!-- Columna 2: Entrega de Cálculos -->
+            <div class="columna">
+                <div class="card">
+                    <span class="card-number">NR. 02</span>
+                    <h2>Entrega de Cálculos y Diseño</h2>
+                    
+                    <div class="form-group">
+                        <label>Receptor</label>
+                        <select id="ing-receptor">
+                            <option value="">-- Seleccione --</option>
+                            <option value="coord_1">Coordinador Principal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Versión de cálculo</label>
+                        <input type="text" id="ing-version" placeholder="Ej: V1, Final">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Adjuntar Memoria (.pdf, .dwg, .dxf, .xlsx, .zip)</label>
+                        <input type="file" id="ing-archivo" accept=".pdf,.dwg,.dxf,.xlsx,.zip">
+                        <div id="err-ing-archivo" class="error-msg"></div>
+                    </div>
+
+                    <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+                        <input type="checkbox" id="ing-conformidad" style="width: auto; cursor: pointer;">
+                        <label for="ing-conformidad" style="margin: 0; text-transform: none; font-size: 0.85rem; color: #121315; font-weight: 500;">Certifico la conformidad técnica y normativa.</label>
+                    </div>
+                    <div id="err-conformidad" class="error-msg" style="margin-bottom: 15px;">Debe marcar la casilla de conformidad.</div>
+
+                    <button class="btn btn-primario" style="width: 100%;" onclick="entregarCalculos()">Enviar Diseño Estructural</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="ing_logica.js"></script>
+</body>
+</html>

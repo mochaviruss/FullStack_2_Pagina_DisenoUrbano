@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="estilos_comunes.css">
+</head>
+<body>
+
+    <div class="hero-section">
+        <header class="navbar">
+            <div>
+                <h1>Panel de Administración</h1>
+                <p class="hero-subtitle">Reportes consolidado de avance y gestión financiera de proyectos</p>
+            </div>
+            <div>
+                <button class="btn btn-nav" onclick="window.location.href='index.html'">← Volver al Login</button>
+                <button class="btn btn-nav" onclick="reiniciarPruebas()" style="margin-left: 10px;">Reiniciar Datos</button>
+            </div>
+        </header>
+    </div>
+
+    <main class="main-container">
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
+                <div>
+                    <span class="card-number">NR. 01</span>
+                    <h2 style="margin-bottom: 0; border-bottom: none;">Consolidado de Proyectos</h2>
+                </div>
+                <button class="btn btn-exito" style="width: auto; padding: 12px 24px;" onclick="exportarExcel()">Exportar a Excel</button>
+            </div>
+
+            <div style="overflow-x: auto; margin-top: 20px;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Proyecto</th>
+                            <th>Avance</th>
+                            <th>Costo Estimado</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-reportes">
+                        <!-- Inyección dinámica de JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="admin_logica.js"></script>
+</body>
+</html>

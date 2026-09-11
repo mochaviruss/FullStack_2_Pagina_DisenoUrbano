@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso al Sistema - Diseño Urbano</title>
+    <link rel="stylesheet" href="estilos_comunes.css">
+</head>
+<body>
+
+    <!-- Cabecera Hero Ark-Shelter -->
+    <div class="hero-section">
+        <header class="navbar">
+            <div>
+                <h1>Portal de Proyectos</h1>
+                <p class="hero-subtitle">Sistema Integrado de Gestión Arquitectónica y Diseño Urbano</p>
+            </div>
+        </header>
+    </div>
+
+    <!-- Tarjeta Central de Login -->
+    <main class="main-container" style="max-width: 500px; margin-left: auto; margin-right: auto;">
+        <div class="card">
+            <span class="card-number">NR. 01</span>
+            <h2>Iniciar Sesión</h2>
+            
+            <form id="form-login">
+                <div class="form-group">
+                    <label for="rol-usuario">Rol de Usuario</label>
+                    <select id="rol-usuario">
+                        <option value="">-- Seleccione un rol --</option>
+                        <option value="cliente_dashboard.html">Cliente</option>
+                        <option value="coordinador_dashboard.html">Coordinador de Proyectos</option>
+                        <option value="admin_dashboard.html">Administrador</option>
+                        <option value="arq_dashboard.html">Arquitecto</option>
+                        <option value="disenador_dashboard.html">Diseñador Gráfico</option>
+                        <option value="ing_dashboard.html">Ingeniero Estructural</option>
+                    </select>
+                    <div id="error-login" class="error-msg" style="display: none; margin-top: 8px;">Debe seleccionar un rol para ingresar.</div>
+                </div>
+
+                <button type="button" class="btn btn-primario" style="width: 100%; margin-top: 15px;" onclick="ingresarSistema()">Ingresar al Dashboard</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function ingresarSistema() {
+            const selector = document.getElementById('rol-usuario');
+            const errorDiv = document.getElementById('error-login');
+
+            if (selector.value === "") {
+                errorDiv.style.display = 'block';
+                selector.style.borderColor = '#e63946';
+            } else {
+                errorDiv.style.display = 'none';
+                window.location.href = selector.value;
+            }
+        }
+    </script>
+</body>
+</html>

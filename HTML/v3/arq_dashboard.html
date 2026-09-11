@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Arquitecto</title>
+    <link rel="stylesheet" href="estilos_comunes.css">
+</head>
+<body>
+
+    <div class="hero-section">
+        <header class="navbar">
+            <div>
+                <h1>Panel de Arquitectura</h1>
+                <p class="hero-subtitle">Módulo de carga de versiones, planos y actualización de revisión</p>
+            </div>
+            <div>
+                <button class="btn btn-nav" onclick="window.location.href='index.html'">← Volver al Login</button>
+                <button class="btn btn-nav" onclick="reiniciarPruebas()" style="margin-left: 10px;">Reiniciar Datos</button>
+            </div>
+        </header>
+    </div>
+
+    <main class="main-container">
+        <div class="panel-grid" style="grid-template-columns: 1fr;">
+            <div class="columna">
+                <div class="card">
+                    <span class="card-number">NR. 01</span>
+                    <h2>Subir Nueva Versión de Plano</h2>
+                    
+                    <form id="form-plano">
+                        <div class="form-group">
+                            <label>Proyecto</label>
+                            <select id="arq-proyecto">
+                                <option value="">-- Seleccione --</option>
+                                <option value="PR001">Centro Comercial La Florida</option>
+                            </select>
+                            <div id="err-proyecto" class="error-msg">Obligatorio</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Número de Versión</label>
+                            <input type="text" id="arq-version" placeholder="Ej: v2.1">
+                            <div id="err-version" class="error-msg">Obligatorio</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <input type="date" id="arq-fecha">
+                            <div id="err-fecha" class="error-msg">Obligatorio</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Comentario</label>
+                            <textarea id="arq-comentario" placeholder="Detalle los cambios realizados en esta versión..."></textarea>
+                            <div id="err-comentario" class="error-msg">Obligatorio</div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primario" onclick="subirPlano()">Cargar Plano</button>
+                            <button type="button" class="btn btn-exito" onclick="marcarRevision()">Marcar Tarea como En Revisión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="arq_logica.js"></script>
+</body>
+</html>

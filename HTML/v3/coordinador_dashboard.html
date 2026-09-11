@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Coordinador - Diseño Urbano</title>
+    <link rel="stylesheet" href="estilos_comunes.css">
+</head>
+<body>
+
+    <!-- Header Hero con imagen de arquitectura -->
+    <div class="hero-section">
+        <header class="navbar">
+            <div>
+                <h1>Panel de Coordinación</h1>
+                <p class="hero-subtitle">Gestión de tareas, programación de eventos y monitoreo de estados</p>
+            </div>
+            <div>
+                <button class="btn btn-nav" onclick="window.location.href='index.html'">← Volver al Login</button>
+                <button class="btn btn-nav" onclick="reiniciarPruebas()" style="margin-left: 10px;">Reiniciar Datos</button>
+            </div>
+        </header>
+    </div>
+
+    <!-- Contenedor blanco flotante Ark-Shelter -->
+    <main class="main-container">
+        <div class="panel-grid">
+            
+            <!-- Columna Izquierda: Operaciones y Formulación -->
+            <div class="columna" style="display: flex; flex-direction: column; gap: 30px;">
+                
+                <!-- Sección NR. 01: Asignación de Tareas -->
+                <div class="card">
+                    <span class="card-number">NR. 01</span>
+                    <h2>Asignar Tareas</h2>
+                    <form id="form-tarea">
+                        <div class="form-group">
+                            <label>Seleccionar Usuario</label>
+                            <select id="usuario-tarea">
+                                <option value="">-- Seleccione un responsable --</option>
+                                <option value="arq_juan">Arq. Juan (Arquitecto)</option>
+                                <option value="dis_ana">Dis. Ana (Diseñador Gráfico)</option>
+                                <option value="ing_pedro">Ing. Pedro (Ingeniero Estructural)</option>
+                            </select>
+                            <div id="error-usuario" class="error-msg"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Descripción de la Tarea</label>
+                            <textarea id="desc-tarea" placeholder="Ingrese el detalle de la tarea..."></textarea>
+                            <div id="error-tarea" class="error-msg"></div>
+                        </div>
+
+                        <button type="button" class="btn btn-primario" style="width: 100%;" onclick="asignarTarea()">Asignar Tarea</button>
+                    </form>
+                </div>
+
+                <!-- Sección NR. 02: Eventos y Fechas -->
+                <div class="card">
+                    <span class="card-number">NR. 02</span>
+                    <h2>Fijar Eventos y Fechas</h2>
+                    <form id="form-evento">
+                        <div class="form-group">
+                            <label>Nombre del Evento</label>
+                            <input type="text" id="nombre-evento" placeholder="Ej: Reunión con cliente">
+                            <div id="error-nombre-evento" class="error-msg"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Fecha y Hora</label>
+                            <input type="datetime-local" id="fecha-evento">
+                            <div id="error-fecha" class="error-msg"></div>
+                        </div>
+
+                        <button type="button" class="btn btn-primario" style="width: 100%;" onclick="fijarEvento()">Guardar Evento</button>
+                    </form>
+                </div>
+
+                <!-- Sección NR. 03: Ticket de Estado -->
+                <div class="card">
+                    <span class="card-number">NR. 03</span>
+                    <h2>Levantar Ticket de Estado</h2>
+                    <form id="form-ticket">
+                        <div class="form-group">
+                            <label>Etiquetar Usuario</label>
+                            <select id="usuario-ticket">
+                                <option value="">-- Seleccione un usuario --</option>
+                                <option value="arq_juan">Arq. Juan</option>
+                                <option value="dis_ana">Dis. Ana</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Detalle del Ticket</label>
+                            <textarea id="detalle-ticket" placeholder="Motivo del ticket..."></textarea>
+                        </div>
+
+                        <button type="button" class="btn btn-alerta" style="width: 100%;" onclick="levantarTicket()">Generar Ticket</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Columna Derecha: Monitor en Tiempo Real -->
+            <div class="columna">
+                <div class="card" style="position: sticky; top: 20px;">
+                    <span class="card-number">MONITOR</span>
+                    <h2>Estados en Tiempo Real</h2>
+                    <div id="lista-proyectos-estado">
+                        <!-- Inyección vía JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="coordinador_logica.js"></script>
+</body>
+</html>
