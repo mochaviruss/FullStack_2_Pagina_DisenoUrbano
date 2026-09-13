@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Diseno Grafico</title>
+    <link rel="stylesheet" href="v3.0estilos_comunes.css">
+</head>
+<body>
+
+    <div class="hero-section">
+        <header class="navbar">
+            <div>
+                <h1>Panel de Diseno Grafico</h1>
+                <p class="hero-subtitle">Modulo de entregables y revision de solicitudes</p>
+            </div>
+            <nav style="display: flex; gap: 10px;">
+                <a href="index.html" class="btn btn-nav" style="text-decoration: none; display: inline-flex; align-items: center;">← Volver al Login</a>
+                <button class="btn btn-nav" onclick="reiniciarPruebas()">Reiniciar Datos</button>
+            </nav>
+        </header>
+    </div>
+
+    <main class="main-container">
+        <section class="panel-grid">
+            
+            <div class="columna">
+                <article class="card">
+                    <span class="card-number">NR. 01</span>
+                    <h2>Gestionar Solicitud</h2>
+                    
+                    <div class="form-group">
+                        <label>Solicitud Pendiente</label>
+                        <select id="solicitud-actual">
+                            <option value="SOL01">Render Fachada Principal</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Motivo de rechazo (Solo llenar si se rechaza)</label>
+                        <textarea id="motivo-rechazo" placeholder="Especifique el motivo en caso de rechazo..."></textarea>
+                        <div id="err-rechazo" class="error-msg" style="display: none;">Debe ingresar un motivo para rechazar.</div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-exito" onclick="aceptarSolicitud()">Aceptar</button>
+                        <button class="btn btn-alerta" onclick="rechazarSolicitud()">Rechazar</button>
+                    </div>
+                </article>
+            </div>
+
+            <div class="columna">
+                <article class="card">
+                    <span class="card-number">NR. 02</span>
+                    <h2>Entrega de Material Visual</h2>
+                    
+                    <div class="form-group">
+                        <label>Destinatario / Cliente</label>
+                        <select id="dg-destinatario">
+                            <option value="">-- Seleccione Cliente --</option>
+                            <option value="C01">Cliente Inmobiliaria Sur</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notas de avance</label>
+                        <textarea id="dg-notas" placeholder="Detalle las observaciones de la entrega..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Adjuntar Archivo (.pdf, .png, .zip, .ai, .psd)</label>
+                        <input type="file" id="dg-archivo" accept=".pdf,.png,.jpeg,.zip,.ai,.psd,.pptx">
+                        <div id="err-dg-archivo" class="error-msg"></div>
+                    </div>
+
+                    <button class="btn btn-primario" style="width: 100%; margin-top: 10px;" onclick="enviarMaterial()">Enviar Material</button>
+                </article>
+            </div>
+
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 20px; color: #a0a0a5; font-size: 0.8rem;">
+        <p>&copy; 2026 Diseno Urbano Team-Panco. Soporte: TeamPanco@ShelterBuildings.com</p>
+    </footer>
+
+    <script src="disenador_logica.js"></script>
+</body>
+</html>
