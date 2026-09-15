@@ -3,36 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel del Administrador</title>
-    <link rel="stylesheet" href="estilos_administrativos.css">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="estilos_comunes.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Panel de Administracion</h1>
-            <p>Reportes de avance y costos de proyectos.</p>
-        </div>
-        
-        <div class="header">
-        <!-- Boton para volver al login-->
-        <button class="btn btn-primario" onclick="window.location.href='index.html'" style="max-width: 180px;">
-        ← Volver al Login
-        </button>
 
-        <!-- Boton de resetear de datos -->
-        <button class="btn btn-alerta" onclick="reiniciarPruebas()" style="max-width: 200px; margin-top: 15px;">
-            Reiniciar Datos
-        </button>
-        </div>
+    <div class="hero-section">
+        <header class="navbar">
+            <div>
+                <h1>Panel de Administración</h1>
+                <p class="hero-subtitle">Reportes consolidado de avance y gestión financiera de proyectos</p>
+            </div>
+            <div>
+                <button class="btn btn-nav" onclick="window.location.href='index.html'">← Volver al Login</button>
+                <button class="btn btn-nav" onclick="reiniciarPruebas()" style="margin-left: 10px;">Reiniciar Datos</button>
+            </div>
+        </header>
+    </div>
 
+    <main class="main-container">
         <div class="card">
-            <h2>Consolidado de Proyectos</h2>
-            <button class="btn btn-exito" style="max-width: 200px;" onclick="exportarExcel()">Exportar a Excel</button>
-            <div style="overflow-x: auto;">
-                <table>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
+                <div>
+                    <span class="card-number">NR. 01</span>
+                    <h2 style="margin-bottom: 0; border-bottom: none;">Consolidado de Proyectos</h2>
+                </div>
+                <button class="btn btn-exito" style="width: auto; padding: 12px 24px;" onclick="exportarExcel()">Exportar a Excel</button>
+            </div>
+
+            <div style="overflow-x: auto; margin-top: 20px;">
+                <table class="data-table">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
+                            <th>Código</th>
                             <th>Proyecto</th>
                             <th>Avance</th>
                             <th>Costo Estimado</th>
@@ -40,12 +43,13 @@
                         </tr>
                     </thead>
                     <tbody id="tabla-reportes">
-                        <!-- Inyeccion JS -->
+                        <!-- Inyección dinámica de JS -->
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
+    </main>
+
     <script src="admin_logica.js"></script>
 </body>
 </html>
