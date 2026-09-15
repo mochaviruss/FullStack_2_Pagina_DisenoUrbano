@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel del Arquitecto</title>
-    <link rel="stylesheet" href="estilos_administrativos.css">
+    <link rel="stylesheet" href="v3.0estilos_comunes.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Panel de Arquitectura</h1>
-        </div>
 
-        <div class="header">
-        <!-- Boton para volver al login-->
-        <button class="btn btn-primario" onclick="window.location.href='index.html'" style="max-width: 180px;">
-        ← Volver al Login
-        </button>
+    <div class="hero-section">
+        <header class="navbar">
+            <div>
+                <h1>Panel de Arquitectura</h1>
+                <p class="hero-subtitle">Modulo de carga de versiones, planos y actualizacion de revision</p>
+            </div>
+            <nav style="display: flex; gap: 10px;">
+                <a href="index.html" class="btn btn-nav" style="text-decoration: none; display: inline-flex; align-items: center;">← Volver al Login</a>
+                <button class="btn btn-nav" onclick="reiniciarPruebas()">Reiniciar Datos</button>
+            </nav>
+        </header>
+    </div>
 
-        <!-- Boton de resetear de datos -->
-        <button class="btn btn-alerta" onclick="reiniciarPruebas()" style="max-width: 200px; margin-top: 15px;">
-            Reiniciar Datos
-        </button>
-        </div>
-
-        <div class="panel-grid">
+    <main class="main-container">
+        <section class="panel-grid" style="grid-template-columns: 1fr;">
             <div class="columna">
-                <div class="card">
+                <article class="card">
+                    <span class="card-number">NR. 01</span>
                     <h2>Subir Nueva Version de Plano</h2>
+                    
                     <form id="form-plano">
                         <div class="form-group">
                             <label>Proyecto</label>
@@ -37,28 +37,39 @@
                             </select>
                             <div id="err-proyecto" class="error-msg">Obligatorio</div>
                         </div>
+
                         <div class="form-group">
                             <label>Numero de Version</label>
                             <input type="text" id="arq-version" placeholder="Ej: v2.1">
                             <div id="err-version" class="error-msg">Obligatorio</div>
                         </div>
+
                         <div class="form-group">
                             <label>Fecha</label>
                             <input type="date" id="arq-fecha">
                             <div id="err-fecha" class="error-msg">Obligatorio</div>
                         </div>
+
                         <div class="form-group">
                             <label>Comentario</label>
-                            <textarea id="arq-comentario"></textarea>
+                            <textarea id="arq-comentario" placeholder="Detalle los cambios realizados en esta version..."></textarea>
                             <div id="err-comentario" class="error-msg">Obligatorio</div>
                         </div>
-                        <button type="button" class="btn btn-primario" onclick="subirPlano()">Cargar Plano</button>
-                        <button type="button" class="btn btn-exito" onclick="marcarRevision()">Marcar Tarea como En Revision</button>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primario" onclick="subirPlano()">Cargar Plano</button>
+                            <button type="button" class="btn btn-exito" onclick="marcarRevision()">Marcar Tarea como En Revision</button>
+                        </div>
                     </form>
-                </div>
+                </article>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 20px; color: #a0a0a5; font-size: 0.8rem;">
+        <p>&copy; 2026 Diseno Urbano Team-Panco. Soporte: TeamPanco@ShelterBuildings.com</p>
+    </footer>
+
     <script src="arq_logica.js"></script>
 </body>
 </html>

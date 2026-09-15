@@ -125,3 +125,9 @@ function levantarTicket() {
 }
 
 window.onload = cargarEstadosProyectos;
+
+/*Para reiniciar parametros*/
+function reiniciarPruebas() {
+    localStorage.removeItem('proyectosCliente');
+    location.reload();
+}

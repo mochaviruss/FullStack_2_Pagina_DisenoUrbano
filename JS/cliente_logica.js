@@ -1,9 +1,9 @@
 const datosIniciales = [
-    { id: "P01", nombre: "Casa Habitacion Lote 4", estado: "Planificado", fechaInicio: "2026-10-01", entregable: "Ninguno aun" },
-    { id: "P02", nombre: "Remodelacion Oficina Sur", estado: "En desarrollo", fechaInicio: "2026-08-15", entregable: "boceto_v1.pdf" },
-    { id: "P03", nombre: "Centro Comercial - Etapa 1", estado: "En revision", fechaInicio: "2026-05-10", entregable: "maqueta_final_v3.zip" },
-    { id: "P04", nombre: "Parque Urbano Las Rosas", estado: "Entregado", fechaInicio: "2025-11-20", entregable: "planos_aprobados.pdf" },
-    { id: "P05", nombre: "Edificio Residencial Norte", estado: "Cancelado", fechaInicio: "2026-01-10", entregable: "N/A" }
+    { id: "P01", nombre: "Casa Habitacion Lote 4", estado: "Planificado", fechaInicio: "2026-10-01", entregable: "N/A", imagen: "ProyectoCliente.jpg" },
+    { id: "P02", nombre: "Remodelacion Oficina Sur", estado: "En desarrollo", fechaInicio: "2026-08-15", entregable: "boceto_v1.pdf", imagen: "" },
+    { id: "P03", nombre: "Centro Comercial - Etapa 1", estado: "En revision", fechaInicio: "2026-05-10", entregable: "maqueta_final_v3.zip", imagen: "" },
+    { id: "P04", nombre: "Parque Urbano Las Rosas", estado: "Entregado", fechaInicio: "2025-11-20", entregable: "planos_aprobados.pdf", imagen: "" },
+    { id: "P05", nombre: "Edificio Residencial Norte", estado: "Cancelado", fechaInicio: "2026-01-10", entregable: "N/A", imagen: "" }
 ];
 
 if (!localStorage.getItem('proyectosCliente')) {
@@ -12,42 +12,61 @@ if (!localStorage.getItem('proyectosCliente')) {
 
 function renderizarProyectos() {
     const contenedor = document.getElementById('contenedor-proyectos');
-    contenedor.innerHTML = '';
+    if(!contenedor) return;
     
+    contenedor.innerHTML = '';
     const proyectos = JSON.parse(localStorage.getItem('proyectosCliente'));
 
     proyectos.forEach(proyecto => {
-        let claseEstado = proyecto.estado.toLowerCase().replace(" ", "");
         const tarjeta = document.createElement('div');
         tarjeta.className = `proyecto-card`;
-        tarjeta.style.borderLeftColor = obtenerColorEstado(proyecto.estado);
+        
+        tarjeta.style.background = "#ffffff";
+        tarjeta.style.border = "1px solid #e5e5e7";
+        tarjeta.style.borderLeft = "5px solid #121315"; 
+        tarjeta.style.borderRadius = "8px";
+        tarjeta.style.padding = "20px";
+        tarjeta.style.marginBottom = "25px";
+        tarjeta.style.boxShadow = "0 2px 4px rgba(0,0,0,0.02)";
+
+        let imagenHtml = '';
+        if (proyecto.imagen) {
+            // object-fit: contain asegura que la imagen se vea completa. El fondo gris llena los espacios sobrantes si es muy cuadrada.
+            imagenHtml = `<img src="${proyecto.imagen}" alt="Render del proyecto" style="width: 100%; height: 250px; object-fit: contain; background-color: #f4f4f5; border-radius: 6px; margin-bottom: 20px; border: 1px solid #e5e5e7;">`;
+        } else {
+            imagenHtml = `<div style="background-color: #f4f4f5; height: 140px; border-radius: 6px; border: 1px dashed #d1d1d6; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: #a0a0a5; font-size: 0.85rem; font-weight: 500;">[ Espacio reservado para imagen del proyecto ]</div>`;
+        }
 
         let html = `
-            <div class="proyecto-header">
-                <div class="proyecto-titulo">Proyecto: ${proyecto.nombre}</div>
-                <div class="badge estado-${claseEstado}">${proyecto.estado}</div>
+            ${imagenHtml}
+            
+            <div class="proyecto-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <div class="proyecto-titulo" style="font-size: 1.1rem; font-weight: bold; color: #121315;">Proyecto: ${proyecto.nombre}</div>
+                <!-- Ancho fijo (width: 140px) y text-align center para que todos los botones sean iguales -->
+                <div class="badge" style="background-color: #121315; color: #ffffff; padding: 6px 10px; width: 140px; text-align: center; border-radius: 4px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">${proyecto.estado}</div>
             </div>
-            <div class="detalles">
-                <p><strong>Fecha de Inicio:</strong> ${proyecto.fechaInicio}</p>
-                <p><strong>Ultimo Entregable:</strong> ${proyecto.entregable}</p>
+            
+            <div class="detalles" style="font-size: 0.9rem; color: #4a4a4f; margin-bottom: 15px;">
+                <p style="margin: 6px 0;"><strong>Fecha de Inicio:</strong> ${proyecto.fechaInicio}</p>
+                <p style="margin: 6px 0;"><strong>Ultimo Entregable:</strong> ${proyecto.entregable}</p>
             </div>
         `;
 
         if (proyecto.estado === "En revision") {
             html += `
-            <div class="zona-acciones">
-                <div class="form-group">
-                    <label>Comentario o Apelacion <span class="nota-opcional">(No es necesario que rellenes este campo salvo que quieras dejar algun comentario o indicar correcciones)</span></label>
-                    <textarea id="texto-${proyecto.id}" placeholder="Escribe aqui tus observaciones..."></textarea>
+            <div class="zona-acciones" style="border-top: 1px solid #e5e5e7; padding-top: 20px; margin-top: 15px;">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; color: #121315;">COMENTARIO O APELACION <span style="font-weight: normal; color: #a0a0a5; text-transform: none;">(Opcional)</span></label>
+                    <textarea id="texto-${proyecto.id}" placeholder="Escribe aqui tus observaciones..." style="width: 100%; padding: 12px; border: 1px solid #e5e5e7; border-radius: 4px; font-family: inherit; resize: vertical; min-height: 80px; box-sizing: border-box;"></textarea>
                 </div>
-                <div class="form-group">
-                    <label>Adjuntar archivo de correccion <span class="nota-opcional">(Formatos permitidos: .blend, .stl, .png, .mp4, .mkv)</span></label>
-                    <input type="file" id="archivo-${proyecto.id}" accept=".blend,.stl,.png,.mp4,.mkv">
-                    <div id="error-${proyecto.id}" class="error-msg"></div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; color: #121315;">ADJUNTAR ARCHIVO <span style="font-weight: normal; color: #a0a0a5; text-transform: none;">(.blend, .stl, .png, .mp4)</span></label>
+                    <input type="file" id="archivo-${proyecto.id}" accept=".blend,.stl,.png,.mp4,.mkv" style="width: 100%; font-size: 0.9rem;">
+                    <div id="error-${proyecto.id}" class="error-msg" style="display: none; color: #e63946; font-size: 0.8rem; margin-top: 5px;"></div>
                 </div>
-                <div class="acciones-botones">
-                    <button class="btn btn-aprobar" onclick="aprobarProyecto('${proyecto.id}')">Aprobar Entregable</button>
-                    <button class="btn btn-apelar" onclick="apelarProyecto('${proyecto.id}')">Enviar Apelacion</button>
+                <div class="acciones-botones" style="display: flex; gap: 15px;">
+                    <button class="btn" style="background: #121315; color: #fff; border: none; padding: 12px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; flex: 1; text-transform: uppercase; font-size: 0.85rem;" onclick="aprobarProyecto('${proyecto.id}')">Aprobar Entregable</button>
+                    <button class="btn" style="background: #fff; color: #121315; border: 1px solid #121315; padding: 12px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; flex: 1; text-transform: uppercase; font-size: 0.85rem;" onclick="apelarProyecto('${proyecto.id}')">Enviar Apelacion</button>
                 </div>
             </div>
             `;
@@ -56,17 +75,6 @@ function renderizarProyectos() {
         tarjeta.innerHTML = html;
         contenedor.appendChild(tarjeta);
     });
-}
-
-function obtenerColorEstado(estado) {
-    switch(estado) {
-        case "Planificado": return "#cbd5e1";
-        case "En desarrollo": return "#93c5fd";
-        case "En revision": return "#fde047";
-        case "Entregado": return "#86efac";
-        case "Cancelado": return "#fca5a5";
-        default: return "#ccc";
-    }
 }
 
 function aprobarProyecto(id) {
@@ -87,9 +95,8 @@ function apelarProyecto(id) {
         const extension = archivo.name.split('.').pop().toLowerCase();
 
         if (!extensionesPermitidas.includes(extension)) {
-            mensajeError.innerText = `Error: El formato .${extension} no es valido. Formatos permitidos: .blend, .stl, .png, .mp4, .mkv`;
+            mensajeError.innerText = `Error: El formato .${extension} no es valido. Permitidos: .blend, .stl, .png, .mp4, .mkv`;
             mensajeError.style.display = 'block';
-            inputFile.style.borderColor = '#dc2626';
             return; 
         }
     }
@@ -108,10 +115,9 @@ function actualizarEstado(id, nuevoEstado) {
     }
 }
 
-/*Funcion para reiniciar pruebas en el cliente */
 function reiniciarPruebas() {
     localStorage.removeItem('proyectosCliente');
     location.reload();
 }
 
-window.onload = renderizarProyectos;
+document.addEventListener('DOMContentLoaded', renderizarProyectos);

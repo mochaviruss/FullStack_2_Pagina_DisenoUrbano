@@ -53,3 +53,9 @@ function entregarCalculos() {
 
     alert("Calculos entregados con exito y notificacion enviada.");
 }
+
+/*Para reiniciar parametros*/
+function reiniciarPruebas() {
+    localStorage.removeItem('proyectosCliente');
+    location.reload();
+}

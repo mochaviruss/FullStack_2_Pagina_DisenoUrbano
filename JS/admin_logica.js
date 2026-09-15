@@ -16,3 +16,9 @@ window.onload = function() {
 function exportarExcel() {
     alert("Simulando descarga: consolidado_proyectos.xlsx generado con exito.");
 }
+
+/*Para reiniciar parametros*/
+function reiniciarPruebas() {
+    localStorage.removeItem('proyectosCliente');
+    location.reload();
+}

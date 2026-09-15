@@ -24,3 +24,9 @@ function subirPlano() {
 function marcarRevision() {
     alert("La tarea actual ha sido marcada como 'En Revision'. El cliente podra verla.");
 }
+
+/*Para reiniciar parametros*/
+function reiniciarPruebas() {
+    localStorage.removeItem('proyectosCliente');
+    location.reload();
+}

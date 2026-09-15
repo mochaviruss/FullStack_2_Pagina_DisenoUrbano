@@ -8,23 +8,16 @@ function aceptarSolicitud() {
 
 function rechazarSolicitud() {
     const motivo = document.getElementById('motivo-rechazo');
-    const err = document.getElementById('err-rechazo');
+    const error = document.getElementById('err-rechazo');
     
-    if(!mostrandoMotivo) {
-        motivo.style.display = 'block';
-        mostrandoMotivo = true;
-        return;
-    }
-
-    if(motivo.value.trim() === '') {
-        err.style.display = 'block';
-        motivo.style.borderColor = '#dc2626';
+    if (motivo.value.trim() === "") {
+        error.style.display = 'block';
+        motivo.style.borderColor = '#e63946';
     } else {
-        err.style.display = 'none';
-        alert("Solicitud declinada. Coordinador notificado.");
-        motivo.value = '';
-        motivo.style.display = 'none';
-        mostrandoMotivo = false;
+        error.style.display = 'none';
+        motivo.style.borderColor = '#ccc';
+        alert("Solicitud rechazada de forma exitosa. Notificando al coordinador.");
+        motivo.value = ""; // Limpia el campo
     }
 }
 
@@ -64,4 +57,10 @@ function enviarMaterial() {
     }
 
     alert("Material enviado con exito.");
+}
+
+/*Para reiniciar parametros*/
+function reiniciarPruebas() {
+    localStorage.removeItem('proyectosCliente');
+    location.reload();
 }
