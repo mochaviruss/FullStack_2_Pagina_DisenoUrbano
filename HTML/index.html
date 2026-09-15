@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso al Sistema - Diseno Urbano</title>
+    <link rel="stylesheet" href="estilos_comunes.css">
+</head>
+<body>
+    <div class="container" style="max-width: 450px; margin-top: 50px;">
+        <div class="card">
+            <div class="header" style="margin-bottom: 20px; border-bottom: none;">
+                <h1>Iniciar Sesion</h1>
+                <p>Selecciona tu rol para ingresar al portal</p>
+            </div>
+            
+            <form id="form-login">
+                <div class="form-group">
+                    <label for="rol-usuario">Rol de Usuario</label>
+                    <select id="rol-usuario">
+                        <option value="">-- Seleccione un rol --</option>
+                        <option value="cliente_dashboard.html">Cliente</option>
+                        <option value="coordinador_dashboard.html">Coordinador de Proyectos</option>
+                        <option value="admin_dashboard.html">Administrador</option>
+                        <option value="arq_dashboard.html">Arquitecto</option>
+                        <option value="disenador_dashboard.html">Disenador Grafico</option>
+                        <option value="ing_dashboard.html">Ingeniero Estructural</option>
+                    </select>
+                    <div id="error-login" class="error-msg">Debe seleccionar un rol para ingresar.</div>
+                </div>
+
+                <button type="button" class="btn btn-primario" onclick="ingresarSistema()">Ingresar al Dashboard</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function ingresarSistema() {
+            const selector = document.getElementById('rol-usuario');
+            const errorDiv = document.getElementById('error-login');
+
+            if (selector.value === "") {
+                errorDiv.style.display = 'block';
+                selector.style.borderColor = '#dc2626';
+            } else {
+                errorDiv.style.display = 'none';
+                window.location.href = selector.value;
+            }
+        }
+    </script>
+</body>
+</html>

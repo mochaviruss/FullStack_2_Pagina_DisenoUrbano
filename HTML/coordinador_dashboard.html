@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Coordinador - Diseno Urbano</title>
+    <link rel="stylesheet" href="coordinador_estilos.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Panel de Coordinacion</h1>
+            <p>Gestion de Tareas, Eventos y Seguimiento de Proyectos.</p>
+        </div>
+
+        <div class="header">
+        <!-- Boton para volver al login-->
+        <button class="btn btn-primario" onclick="window.location.href='index.html'" style="max-width: 180px;">
+        ← Volver al Login
+        </button>
+
+        <!-- Boton de resetear de datos -->
+        <button class="btn btn-alerta" onclick="reiniciarPruebas()" style="max-width: 200px; margin-top: 15px;">
+            Reiniciar Datos
+        </button>
+        </div>
+
+        <div class="panel-grid">
+            <!-- Columna Izquierda: Formularios -->
+            <div class="columna-formularios">
+                
+                <!-- Formulario 1: Asignar Tareas -->
+                <div class="card">
+                    <h2>Asignar Tareas</h2>
+                    <form id="form-tarea">
+                        <div class="form-group">
+                            <label>Seleccionar Usuario</label>
+                            <select id="usuario-tarea">
+                                <option value="">-- Seleccione un responsable --</option>
+                                <option value="arq_juan">Arq. Juan (Arquitecto)</option>
+                                <option value="dis_ana">Dis. Ana (Disenador Grafico)</option>
+                                <option value="ing_pedro">Ing. Pedro (Ingeniero Estructural)</option>
+                            </select>
+                            <div id="error-usuario" class="error-msg"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Descripcion de la Tarea</label>
+                            <textarea id="desc-tarea" placeholder="Ingrese el detalle de la tarea..."></textarea>
+                            <div id="error-tarea" class="error-msg"></div>
+                        </div>
+                        <button type="button" class="btn btn-primario" onclick="asignarTarea()">Asignar Tarea</button>
+                    </form>
+                </div>
+
+                <!-- Formulario 2: Fijar Eventos -->
+                <div class="card">
+                    <h2>Fijar Eventos y Fechas</h2>
+                    <form id="form-evento">
+                        <div class="form-group">
+                            <label>Nombre del Evento</label>
+                            <input type="text" id="nombre-evento" placeholder="Ej: Reunion con cliente">
+                            <div id="error-nombre-evento" class="error-msg"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha y Hora (AM/PM)</label>
+                            <input type="datetime-local" id="fecha-evento">
+                            <div id="error-fecha" class="error-msg"></div>
+                        </div>
+                        <button type="button" class="btn btn-primario" onclick="fijarEvento()">Guardar Evento</button>
+                    </form>
+                </div>
+
+                <!-- Formulario 3: Levantar Ticket -->
+                <div class="card">
+                    <h2>Levantar Ticket de Estado</h2>
+                    <form id="form-ticket">
+                        <div class="form-group">
+                            <label>Etiquetar Usuario</label>
+                            <select id="usuario-ticket">
+                                <option value="">-- Seleccione un usuario --</option>
+                                <option value="arq_juan">Arq. Juan</option>
+                                <option value="dis_ana">Dis. Ana</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Detalle del Ticket</label>
+                            <textarea id="detalle-ticket" placeholder="Motivo del ticket..."></textarea>
+                        </div>
+                        <button type="button" class="btn btn-alerta" onclick="levantarTicket()">Generar Ticket</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Panel de Estados -->
+            <div class="columna-estados">
+                <div class="card">
+                    <h2>Estados en Tiempo Real</h2>
+                    <div id="lista-proyectos-estado">
+                        <!-- Se inyecta via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="coordinador_logica.js"></script>
+</body>
+</html>

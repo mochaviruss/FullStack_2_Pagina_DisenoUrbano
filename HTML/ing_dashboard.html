@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Ingenieria Estructural</title>
+    <link rel="stylesheet" href="estilos_comunes.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Panel Estructural</h1>
+        </div>
+
+        <div class="header">
+        <!-- Boton para volver al login-->
+        <button class="btn btn-primario" onclick="window.location.href='index.html'" style="max-width: 180px;">
+        ← Volver al Login
+        </button>
+
+        <!-- Boton de resetear de datos -->
+        <button class="btn btn-alerta" onclick="reiniciarPruebas()" style="max-width: 200px; margin-top: 15px;">
+            Reiniciar Datos
+        </button>
+        </div>
+        
+        <div class="panel-grid">
+            <div class="columna">
+                <div class="card">
+                    <h2>Planos Recibidos (Aprobados)</h2>
+                    <ul>
+                        <li>Plano_Arquitectura_V2.dwg <button class="btn btn-exito" style="padding:5px; width:auto;">Descargar</button></li>
+                    </ul>
+                    <hr style="margin:15px 0;">
+                    <h3>Reportar Fallas en Planos</h3>
+                    <textarea id="falla-detalle" placeholder="Detalle la falla estructural..."></textarea>
+                    <div id="err-falla" class="error-msg">Minimo 20 caracteres obligatorios.</div>
+                    <button class="btn btn-alerta" onclick="reportarFalla()">Solicitar Revision / Reportar Falla</button>
+                </div>
+            </div>
+            <div class="columna">
+                <div class="card">
+                    <h2>Entrega de Calculos y Diseno</h2>
+                    <div class="form-group">
+                        <label>Receptor</label>
+                        <select id="ing-receptor">
+                            <option value="">-- Seleccione --</option>
+                            <option value="coord_1">Coordinador Principal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Version de calculo</label>
+                        <input type="text" id="ing-version" placeholder="Ej: V1, Final">
+                    </div>
+                    <div class="form-group">
+                        <label>Adjuntar Memoria (.pdf, .dwg, .dxf, .xlsx, .zip)</label>
+                        <input type="file" id="ing-archivo" accept=".pdf,.dwg,.dxf,.xlsx,.zip">
+                        <div id="err-ing-archivo" class="error-msg"></div>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="ing-conformidad">
+                        <label for="ing-conformidad" style="margin:0;">Certifico la conformidad tecnica y normativa.</label>
+                    </div>
+                    <div id="err-conformidad" class="error-msg">Debe marcar la casilla de conformidad.</div>
+                    <button class="btn btn-primario" onclick="entregarCalculos()">Enviar Diseno Estructural</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="ing_logica.js"></script>
+</body>
+</html>
